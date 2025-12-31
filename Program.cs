@@ -9,7 +9,8 @@ builder.Services.AddWindowsService(options =>
 
 //builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7168/") });
 //builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5298/") });
-builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("http://172.19.50.142:8091/") });
+//builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("http://172.19.50.142:8091/") });
+builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("https://mguiapi.gda.mx:10443/") });
 builder.Services.AddSystemd();
 builder.Services.AddHostedService<Worker>();
 builder.Services.AddSingleton<IRepository, Repository>();
