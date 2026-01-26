@@ -4,7 +4,7 @@
 FROM mcr.microsoft.com/dotnet/runtime:8.0 AS base
 USER $APP_UID
 WORKDIR /app
-
+EXPOSE 7020
 
 # Esta fase se usa para compilar el proyecto de servicio
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -26,3 +26,34 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "MONITOR.SERVICE.VISUALAB.dll"]
+
+
+#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+#WORKDIR /src
+#COPY MONITOR.SERVICE.VISUALAB.csproj .
+#RUN dotnet restore
+#COPY . .
+#
+#RUN dotnet build "MONITOR.SERVICE.VISUALAB.csproj" -c Release -o /app/build
+#
+#RUN dotnet publish -c release -o /app
+#
+## Esta fase se usa en producción o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuración de depuración)
+#FROM mcr.microsoft.com/dotnet/runtime:8.0
+#WORKDIR /app
+#COPY --from=build /app .
+#ENTRYPOINT ["dotnet", "MONITOR.SERVICE.VISUALAB.dll"]
+
+
+#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+#WORKDIR /src
+#COPY ["MONITOR.SERVICE.VISUALAB.csproj", "./"]
+#RUN dotnet restore
+#COPY . .
+#WORKDIR "/src/."
+#RUN dotnet build "MONITOR.SERVICE.VISUALAB.csproj" -c Release -o /app/build
+#
+#FROM mcr.microsoft.com/dotnet/runtime:8.0 AS final
+#WORKDIR /app
+#COPY --from=build /app/build .
+#ENTRYPOINT ["dotnet", "MONITOR.SERVICE.VISUALAB.dll"]

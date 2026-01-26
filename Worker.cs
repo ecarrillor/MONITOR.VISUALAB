@@ -4,6 +4,7 @@ using MONITOR.Enums;
 using MONITOR.SERVICE.VISUALAB.Helpers;
 using MONITOR.SERVICE.VISUALAB.Repositories;
 using Npgsql;
+using OpenHardwareMonitor.Hardware;
 using System.Diagnostics;
 using System.Management;
 using System.Net;
